@@ -3,10 +3,19 @@ import { FaGithub, FaGoogle } from "react-icons/fa6";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 const SocialLogin = () => {
-  const {setUser, loginWithGoogle} = useContext(AuthContext);
+  const {user, setUser, loginWithGoogle, loginWithGitHub} = useContext(AuthContext);
 
   const handleGoogleLogin=()=>{
     loginWithGoogle()
+    .then(res=>{
+      setUser(res.user);
+      toast.success("Login Success!!")
+    })
+    .catch(err=> toast.error(`${err.message}`))
+  }
+
+  const handleGitHubLogin=()=>{
+    loginWithGitHub()
     .then(res=>{
       setUser(res.user);
       toast.success("Login Success!!")
@@ -20,7 +29,7 @@ const SocialLogin = () => {
         <button onClick={handleGoogleLogin} className="btn text-blue-700">
           <FaGoogle></FaGoogle> Login with Google
         </button>
-        <button className="btn ">
+        <button onClick={handleGitHubLogin} className="btn ">
           <FaGithub></FaGithub> Login with Github
         </button>
       </div>

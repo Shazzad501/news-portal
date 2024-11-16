@@ -5,15 +5,15 @@ const FindUs = () => {
     <div>
       <h2 className="font-semibold mb-3">Find Us On</h2>
       <div className="join flex join-vertical *:bg-base-100">
-        <button className="btn join-item justify-start">
+        <a href="https://www.facebook.com/" target="_blank" className="btn join-item justify-start">
           <FaFacebook></FaFacebook> Facebook
-        </button>
-        <button className="btn join-item justify-start">
+        </a>
+        <a href="https://www.instagram.com/" target="_blank" className="btn join-item justify-start">
           <FaInstagram></FaInstagram> Instagram
-        </button>
-        <button className="btn join-item justify-start">
+        </a>
+        <a href="https://x.com/home" target="_blank" className="btn join-item justify-start">
           <FaTwitter></FaTwitter> Twitter
-        </button>
+        </a>
       </div>
     </div>
   );

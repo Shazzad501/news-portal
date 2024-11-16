@@ -1,8 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import NewsCard from "../components/NewsCard";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const CategoryNews = () => {
+  const {setNews} = useContext(AuthContext)
   const { data: news } = useLoaderData();
+  setNews(news);
+
   return (
     <div>
       <h2 className="font-semibold mb-3">Dragon News Home</h2>

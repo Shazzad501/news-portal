@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 const Navbar = () => {
-  const {user, setUser, logOutUser} = useContext(AuthContext)
+  const {user, logOutUser} = useContext(AuthContext)
 
   // user log out function
   const handleLogOut=()=>{
@@ -18,7 +18,7 @@ const Navbar = () => {
     <div className="flex justify-between items-center">
       <div className=""> <div className=" ">
           {
-            user && user?.email ? 
+            user ? 
             (<div className="flex gap-2 items-center"><img className="w-12 h-12 rounded-full" src={user?.photoURL} alt="" />
             <p className="font-bold text-base">{user?.displayName}</p>
             </div>) 

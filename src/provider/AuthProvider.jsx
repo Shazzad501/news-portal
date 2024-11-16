@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
 
@@ -7,8 +7,13 @@ export const AuthContext = createContext()
 const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null)
   const [loading, setLoding] = useState(true);
+  // optional task this is for new data handle
+  const [news, setNews] = useState([])
+
   // create google provider
   const googleProvider = new GoogleAuthProvider()
+  // create git provider
+  const gitProvider = new GithubAuthProvider();
 
   // create new use function
   const createNewUser =(email, password)=>{
@@ -26,6 +31,12 @@ const AuthProvider = ({children}) => {
   const loginWithGoogle=()=>{
     setLoding(true);
     return signInWithPopup(auth, googleProvider);
+  }
+
+  // login with github
+  const loginWithGitHub=()=>{
+    setLoding(true)
+    return signInWithPopup(auth, gitProvider);
   }
 
   // update profile function
@@ -46,9 +57,12 @@ const AuthProvider = ({children}) => {
     createNewUser,
     loginEdgetUser,
     loginWithGoogle,
+    loginWithGitHub,
     updateUserProfile,
     logOutUser,
-    loading
+    loading,
+    setNews,
+    news
   }
 
   // observer handler effent
